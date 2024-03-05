@@ -13,11 +13,9 @@ const theme = extendTheme({
   },
   textStyles: {
     name: {
-      fontFamily: "cursive",
       fontWeight: 'bold'
     },
     cursive: {
-      fontFamily: "cursive",
     },
   },
   components: {
