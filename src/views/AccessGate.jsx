@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Text, Flex, Box, Button, Input, Stack, Link, Circle, Fade, ScaleFade} from '@chakra-ui/react';
-
+import { Text, Flex, Box, Button, Input, Stack, Link, Circle, ScaleFade} from '@chakra-ui/react';
+import PropTypes from 'prop-types';
 
 const LoginForm = ({ setLoginForm }) => {
     return (
@@ -17,7 +17,12 @@ const LoginForm = ({ setLoginForm }) => {
     )
 }
 
+LoginForm.propTypes = {
+  setLoginForm: PropTypes.func.isRequired
+}
+
 const CreateAccountForm = ({ setLoginForm }) => {
+  if (!setLoginForm) return null;
     return (
       <Stack direction='column' spacing={5} w={'100%'}>
         <Input focusBorderColor='bg.1' variant='outline' placeholder='Username' />
@@ -31,6 +36,10 @@ const CreateAccountForm = ({ setLoginForm }) => {
         </Button>
       </Stack> 
     )
+}
+
+CreateAccountForm.propTypes = {
+  setLoginForm: PropTypes.func.isRequired
 }
 
 export default function AccessGate() {
