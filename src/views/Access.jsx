@@ -15,7 +15,8 @@ import {
   AbsoluteCenter,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { usePostUser } from "../hooks/useResources";
+import { usePostUser } from "../hooks/useUsers";
+import { usePostAuth } from "../hooks/useAuth";
 
 const PasswordInput = ({ onChange }) => {
   const [show, setShow] = useState(false);
@@ -44,7 +45,7 @@ PasswordInput.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-const LoginForm = ({ setLoginForm }) => {
+const LoginForm = ({ setLoginForm, loginUserHandler }) => {
   const [loginFormInputs, setLoginFormInputs] = useState({});
 
   const inputHandler = useCallback(
@@ -69,7 +70,15 @@ const LoginForm = ({ setLoginForm }) => {
         placeholder="Username"
       />
       <PasswordInput onChange={inputHandler} />
-      <Button bg="bg.1" color="ft.2" variant="solid" size={"lg"}>
+      <Button
+        onClick={() => {
+          loginUserHandler(loginFormInputs);
+        }}
+        bg="bg.1"
+        color="ft.2"
+        variant="solid"
+        size={"lg"}
+      >
         Login
       </Button>
       <Button
@@ -86,6 +95,7 @@ const LoginForm = ({ setLoginForm }) => {
 
 LoginForm.propTypes = {
   setLoginForm: PropTypes.func.isRequired,
+  loginUserHandler: PropTypes.func.isRequired,
 };
 
 const CreateAccountForm = ({ setLoginForm, createAccountHandler }) => {
@@ -148,23 +158,32 @@ CreateAccountForm.propTypes = {
 
 export default function AccessGate() {
   const [loginForm, setLoginForm] = useState(true);
-  const { isLoading, post } = usePostUser();
+  const { isLoading: userIsLoading, post: userPost } = usePostUser();
+  const { isLoading: authIsLoading, post: authPost } = usePostAuth();
 
   const createAccountHandler = useCallback(
     async (values) => {
       if (!values.username || !values.email || !values.password) return;
-      await post(values);
+      await userPost(values);
     },
-    [post]
+    [userPost]
+  );
+
+  const loginUserHandler = useCallback(
+    async (values) => {
+      if (!values.username || !values.password) return;
+      await authPost(values);
+    },
+    [authPost]
   );
 
   return (
     <Flex direction={"column"} flex={1} h={"100vh"} w={"100vw"}>
-      {isLoading && (
+      {userIsLoading || authIsLoading && (
         <AbsoluteCenter
           zIndex={99}
           bg="white"
-          opacity={isLoading ? 0.5 : 1}
+          opacity={userIsLoading || authIsLoading ? 0.5 : 1}
           height={"100vh"}
           display={"flex"}
           justifyContent={"center"}
@@ -239,7 +258,10 @@ export default function AccessGate() {
 
           <Flex flex={2} w="100%" direction={"row"}>
             {loginForm ? (
-              <LoginForm setLoginForm={setLoginForm} />
+              <LoginForm
+                setLoginForm={setLoginForm}
+                loginUserHandler={loginUserHandler}
+              />
             ) : (
               <CreateAccountForm
                 setLoginForm={setLoginForm}
