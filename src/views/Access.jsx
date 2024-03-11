@@ -3,158 +3,16 @@ import {
   Text,
   Flex,
   Box,
-  Button,
-  Input,
-  Stack,
   Link,
   Circle,
   ScaleFade,
-  InputGroup,
-  InputRightElement,
   Spinner,
   AbsoluteCenter,
 } from "@chakra-ui/react";
-import PropTypes from "prop-types";
-import { usePostUser } from "../hooks/useUsers";
-import { usePostAuth } from "../hooks/useAuth";
-
-const PasswordInput = ({ onChange }) => {
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
-
-  return (
-    <InputGroup size="md">
-      <Input
-        onChange={onChange}
-        pr="4.5rem"
-        name="password"
-        focusBorderColor="bg.1"
-        type={show ? "text" : "password"}
-        placeholder="Password"
-      />
-      <InputRightElement width="4.5rem">
-        <Button h="1.75rem" size="sm" bg="bg.2" onClick={handleClick}>
-          {show ? "Hide" : "Show"}
-        </Button>
-      </InputRightElement>
-    </InputGroup>
-  );
-};
-
-PasswordInput.propTypes = {
-  onChange: PropTypes.func.isRequired,
-};
-
-const LoginForm = ({ setLoginForm, loginUserHandler }) => {
-  const [loginFormInputs, setLoginFormInputs] = useState({});
-
-  const inputHandler = useCallback(
-    (event) => {
-      setLoginFormInputs((prev) => {
-        return {
-          ...prev,
-          [event.target.name]: event.target.value,
-        };
-      });
-    },
-    [setLoginFormInputs]
-  );
-
-  return (
-    <Stack direction="column" spacing={5} w={"100%"}>
-      <Input
-        onChange={inputHandler}
-        name="username"
-        focusBorderColor="bg.1"
-        variant="outline"
-        placeholder="Username"
-      />
-      <PasswordInput onChange={inputHandler} />
-      <Button
-        onClick={() => {
-          loginUserHandler(loginFormInputs);
-        }}
-        bg="bg.1"
-        color="ft.2"
-        variant="solid"
-        size={"lg"}
-      >
-        Login
-      </Button>
-      <Button
-        onClick={() => setLoginForm(false)}
-        colorScheme="bg.1"
-        variant="outline"
-        size={"sm"}
-      >
-        Create Account
-      </Button>
-    </Stack>
-  );
-};
-
-LoginForm.propTypes = {
-  setLoginForm: PropTypes.func.isRequired,
-  loginUserHandler: PropTypes.func.isRequired,
-};
-
-const CreateAccountForm = ({ setLoginForm, createAccountHandler }) => {
-  const [loginFormInputs, setLoginFormInputs] = useState({});
-
-  const inputHandler = useCallback(
-    (event) => {
-      setLoginFormInputs((prev) => {
-        return {
-          ...prev,
-          [event.target.name]: event.target.value,
-        };
-      });
-    },
-    [setLoginFormInputs]
-  );
-
-  return (
-    <Stack direction="column" spacing={5} w={"100%"}>
-      <Input
-        onChange={inputHandler}
-        name="username"
-        focusBorderColor="bg.1"
-        variant="outline"
-        placeholder="Username"
-      />
-      <Input
-        onChange={inputHandler}
-        name="email"
-        focusBorderColor="bg.1"
-        variant="outline"
-        placeholder="Email"
-      />
-      <PasswordInput onChange={inputHandler} />
-      <Button
-        colorScheme="bg.1"
-        variant="outline"
-        size={"lg"}
-        onClick={() => createAccountHandler(loginFormInputs)}
-      >
-        Create
-      </Button>
-      <Button
-        onClick={() => setLoginForm(true)}
-        bg="bg.1"
-        color="ft.2"
-        variant="solid"
-        size={"sm"}
-      >
-        Back
-      </Button>
-    </Stack>
-  );
-};
-
-CreateAccountForm.propTypes = {
-  setLoginForm: PropTypes.func.isRequired,
-  createAccountHandler: PropTypes.func.isRequired,
-};
+import CreateAccountForm from "./components/CreateAccountForm";
+import LoginForm from "./components/LoginForm";
+import { usePostUser } from "../hooks/api/useUsers";
+import { usePostAuth } from "../hooks/api/useAuth";
 
 export default function AccessGate() {
   const [loginForm, setLoginForm] = useState(true);
