@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const postUser = async (body, options) => {
-  const response = await fetch("", {
+  await fetch("/api/1.0/users", {
     ...options,
     method: "POST",
     headers: {
@@ -9,24 +9,23 @@ export const postUser = async (body, options) => {
     },
     body: JSON.stringify(body),
   });
-  const data = await response.json();
-  return data;
 };
 
 export const usePostUser = () => {
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
   const post = async (body, options = {}) => {
     try {
-      setisLoading(true);
+      setIsLoading(true);
       const response = await postUser(body, options);
       setData(response);
+      setIsLoading(false);
       return response;
     } catch (error) {
       setError(error);
-      setisLoading(false);
+      setIsLoading(false);
       throw error;
     }
   };

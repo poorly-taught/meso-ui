@@ -32,7 +32,7 @@ const PasswordInput = ({ onChange }) => {
         placeholder="Password"
       />
       <InputRightElement width="4.5rem">
-        <Button h="1.75rem" size="sm" bg="bg.2"onClick={handleClick}>
+        <Button h="1.75rem" size="sm" bg="bg.2" onClick={handleClick}>
           {show ? "Hide" : "Show"}
         </Button>
       </InputRightElement>
@@ -55,9 +55,8 @@ const LoginForm = ({ setLoginForm }) => {
           [event.target.name]: event.target.value,
         };
       });
-      console.log(loginFormInputs);
     },
-    [loginFormInputs, setLoginFormInputs]
+    [setLoginFormInputs]
   );
 
   return (
@@ -154,8 +153,7 @@ export default function AccessGate() {
   const createAccountHandler = useCallback(
     async (values) => {
       if (!values.username || !values.email || !values.password) return;
-      const tmp = await post(values);
-      console.log(tmp);
+      await post(values);
     },
     [post]
   );
@@ -165,12 +163,12 @@ export default function AccessGate() {
       {isLoading && (
         <AbsoluteCenter
           zIndex={99}
-          bg='white'
+          bg="white"
           opacity={isLoading ? 0.5 : 1}
           height={"100vh"}
-          display={'flex'}
-          justifyContent={'center'}
-          alignItems={'center'}
+          display={"flex"}
+          justifyContent={"center"}
+          alignItems={"center"}
           w={"100vw"}
         >
           <Spinner
@@ -179,7 +177,6 @@ export default function AccessGate() {
             emptyColor="bg.2"
             color="bg.1"
             size="xl"
-
           />
         </AbsoluteCenter>
       )}
