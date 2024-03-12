@@ -2,7 +2,10 @@ import { useState } from "react";
 export const postAuth = async (body, options) => {
   const response = await fetch("/api/1.0/auth", {
     ...options,
-    method: 'POST',
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(body),
   });
 
