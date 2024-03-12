@@ -1,4 +1,16 @@
-import { Flex, Card, Text, Circle } from "@chakra-ui/react";
+import {
+  Flex,
+  Button,
+  Stack,
+  Card,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanel,
+  TabPanels,
+  Text,
+  Circle,
+} from "@chakra-ui/react";
 
 export default function Home() {
   return (
@@ -27,10 +39,29 @@ export default function Home() {
         justify="center"
         align="flex-start"
       >
-        <Card h="100%" w="95%" display={"flex"}></Card>
+        <Card h="100%" w="95%" display={"flex"}>
+          <Tabs isFitted colorScheme="bg.1">
+            <TabList mb="1em">
+              <Tab textStyle={'name'}>Programs</Tab>
+              <Tab textStyle={'name'}>Cycles</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <Stack direction={'row'} justify={'center'}>
+                  <Button colorScheme="bg.1" variant="outline" size={"sm"}>
+                    Create Program
+                  </Button>
+                </Stack>
+              </TabPanel>
+              <TabPanel>
+                <p>two!</p>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Card>
       </Flex>
 
-      <Flex direction={"row"} w="100%" pr={5} justify={"flex-end"}>
+      <Flex direction={"row"} pr={5} justify={"flex-end"}>
         <Circle size="40px" bg="bg.2" color="ft.1">
           T
         </Circle>
