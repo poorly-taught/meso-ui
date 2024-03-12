@@ -6,6 +6,7 @@ import {
   Link,
   Circle,
   ScaleFade,
+  useToast,
 } from "@chakra-ui/react";
 import Loader from "../components/Loader";
 import CreateAccountForm from "./components/CreateAccountForm";
@@ -18,20 +19,44 @@ export default function AccessGate() {
   const { isLoading: userIsLoading, post: userPost } = usePostUser();
   const { isLoading: authIsLoading, post: authPost } = usePostAuth();
 
+  const toast = useToast();
+
   const createAccountHandler = useCallback(
     async (values) => {
       if (!values.username || !values.email || !values.password) return;
-      await userPost(values);
+      try {
+        await userPost(values);
+      } catch (error) {
+        toast({
+          title: error.statusText,
+          description:
+            "If there's an issue please describe what's happened by pressing the T.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     },
-    [userPost]
+    [userPost, toast]
   );
 
   const loginUserHandler = useCallback(
     async (values) => {
       if (!values.username || !values.password) return;
-      await authPost(values);
+      try {
+        await authPost(values);
+      } catch (error) {
+        toast({
+          title: error.statusText,
+          description:
+            "If there's an issue please describe what's happened by pressing the T.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     },
-    [authPost]
+    [authPost, toast]
   );
 
   return (

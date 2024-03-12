@@ -1,9 +1,9 @@
 import { useState, useCallback } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Stack, Input, Button } from "@chakra-ui/react";
 import PasswordInput from "../../components/PasswordInput";
 
-export default function LoginForm ({ setLoginForm, loginUserHandler }) {
+export default function LoginForm({ setLoginForm, loginUserHandler }) {
   const [loginFormInputs, setLoginFormInputs] = useState({});
 
   const inputHandler = useCallback(
@@ -49,7 +49,7 @@ export default function LoginForm ({ setLoginForm, loginUserHandler }) {
       </Button>
     </Stack>
   );
-};
+}
 
 LoginForm.propTypes = {
   setLoginForm: PropTypes.func.isRequired,

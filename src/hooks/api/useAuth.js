@@ -9,6 +9,12 @@ export const postAuth = async (body, options) => {
     body: JSON.stringify(body),
   });
 
+  if (response.status !== 200) {
+    throw {
+      statusText: response.statusText
+    };
+  }
+
   const data = await response.json();
 
   return data;
@@ -23,6 +29,7 @@ export const usePostAuth = () => {
     try {
       setIsLoading(true);
       const response = await postAuth(body, options);
+      // TODO: handle token response
       setData(response);
       setIsLoading(false);
     } catch (error) {
@@ -30,6 +37,8 @@ export const usePostAuth = () => {
       setIsLoading(false);
       throw error;
     }
+
+    return data;
   };
   return {
     isLoading,

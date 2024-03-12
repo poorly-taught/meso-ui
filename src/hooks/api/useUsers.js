@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const postUser = async (body, options) => {
-  await fetch("/api/1.0/users", {
+  const response = await fetch("/api/1.0/users", {
     ...options,
     method: "POST",
     headers: {
@@ -9,6 +9,16 @@ export const postUser = async (body, options) => {
     },
     body: JSON.stringify(body),
   });
+
+  if (response.status !== 200) {
+    throw {
+      statusText: response.statusText
+    };
+  }
+
+  const data = await response.json();
+
+  return data;
 };
 
 export const usePostUser = () => {
