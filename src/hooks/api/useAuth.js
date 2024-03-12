@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const postAuth = async (body, options) => {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/1.0/users`, {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/api/1.0/auth`, {
     ...options,
     method: "POST",
     headers: {
