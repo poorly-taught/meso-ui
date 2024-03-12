@@ -14,7 +14,7 @@ import LoginForm from "./components/LoginForm";
 import { usePostUser } from "../hooks/api/useUsers";
 import { usePostAuth } from "../hooks/api/useAuth";
 
-export default function AccessGate() {
+export default function Access() {
   const [loginForm, setLoginForm] = useState(true);
   const { isLoading: userIsLoading, post: userPost } = usePostUser();
   const { isLoading: authIsLoading, post: authPost } = usePostAuth();

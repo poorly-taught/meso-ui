@@ -4,14 +4,14 @@ export default function Home() {
     return (
         <Flex bg='bg.1' direction={'column'} h={'100vh'} w={'100vw'} gap={4} pb={4}>
             
-            <Flex bg='ft.2' direction={'row'} justify='center' align='center'>
-                <Box w="90%" h='90%' pr={4} display={'flex'} justifyContent={'flex-end'} alignItems={'center'}>
+            <Flex bg='bg.1' direction={'row'} justify='center' align='center'>
+                <Box w="90%" h='80%' pr={4} display={'flex'} justifyContent={'flex-end'} bg="bg.2" alignItems={'center'}>
                     <Text textStyle={'name'} fontSize={'30px'}> MESOGROWTH </Text>
                 </Box>
             </Flex>
 
             <Flex bg='bg.1' direction={'row'} h={'30%'} justify='center' align='center'>
-                <Card bg='bg.2' h='100%' w='70%'>
+                <Card bg='bg.2' h='100%' w='90%'>
                     <CardHeader>
                         <Heading size='md'>Stop watch</Heading>
                     </CardHeader>

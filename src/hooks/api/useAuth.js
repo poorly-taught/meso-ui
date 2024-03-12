@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 export const postAuth = async (body, options) => {
   const response = await fetch("/api/1.0/auth", {
     ...options,
@@ -11,7 +12,7 @@ export const postAuth = async (body, options) => {
 
   if (response.status !== 200) {
     throw {
-      statusText: response.statusText
+      statusText: response.statusText,
     };
   }
 
