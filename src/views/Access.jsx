@@ -6,9 +6,8 @@ import {
   Link,
   Circle,
   ScaleFade,
-  Spinner,
-  AbsoluteCenter,
 } from "@chakra-ui/react";
+import Loader from "../components/Loader";
 import CreateAccountForm from "./components/CreateAccountForm";
 import LoginForm from "./components/LoginForm";
 import { usePostUser } from "../hooks/api/useUsers";
@@ -37,27 +36,7 @@ export default function AccessGate() {
 
   return (
     <Flex direction={"column"} flex={1} h={"100vh"} w={"100vw"}>
-      {userIsLoading || authIsLoading && (
-        <AbsoluteCenter
-          zIndex={99}
-          bg="white"
-          opacity={userIsLoading || authIsLoading ? 0.5 : 1}
-          height={"100vh"}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-          w={"100vw"}
-        >
-          <Spinner
-            thickness="5px"
-            speed="0.80s"
-            emptyColor="bg.2"
-            color="bg.1"
-            size="xl"
-          />
-        </AbsoluteCenter>
-      )}
-
+      {(userIsLoading || authIsLoading) && <Loader />}
       <Flex
         bg="bg.1"
         direction={"row"}
