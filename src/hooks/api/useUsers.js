@@ -16,23 +16,17 @@ export const postUser = async (body, options) => {
     };
   }
 
-  const data = await response.json();
-
-  return data;
 };
 
 export const usePostUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
 
   const post = async (body, options = {}) => {
     try {
       setIsLoading(true);
-      const response = await postUser(body, options);
-      setData(response);
+      await postUser(body, options);
       setIsLoading(false);
-      return response;
     } catch (error) {
       setError(error);
       setIsLoading(false);
@@ -43,7 +37,6 @@ export const usePostUser = () => {
   return {
     isLoading,
     error,
-    data,
     post,
   };
 };

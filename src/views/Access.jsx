@@ -28,6 +28,14 @@ export default function Access() {
       if (!values.username || !values.email || !values.password) return;
       try {
         await userPost(values);
+        toast({
+          title: "Account Created",
+          description: "Go ahead and try to login.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+        setLoginForm(true);
       } catch (error) {
         toast({
           title: error.statusText,
@@ -46,10 +54,10 @@ export default function Access() {
     async (values) => {
       if (!values.username || !values.password) return;
       try {
-        const token  = await authPost(values);
+        const token = await authPost(values);
         authContext.updateToken(token);
       } catch (error) {
-        console.log(error)
+        console.log(error);
         toast({
           title: error.statusText,
           description:
