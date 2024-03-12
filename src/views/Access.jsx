@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useContext } from "react";
 import {
   Text,
   Flex,
@@ -13,8 +13,10 @@ import CreateAccountForm from "./components/CreateAccountForm";
 import LoginForm from "./components/LoginForm";
 import { usePostUser } from "../hooks/api/useUsers";
 import { usePostAuth } from "../hooks/api/useAuth";
+import { AuthContext } from "../store/authContext";
 
 export default function Access() {
+  const authContext = useContext(AuthContext);
   const [loginForm, setLoginForm] = useState(true);
   const { isLoading: userIsLoading, post: userPost } = usePostUser();
   const { isLoading: authIsLoading, post: authPost } = usePostAuth();
@@ -44,8 +46,10 @@ export default function Access() {
     async (values) => {
       if (!values.username || !values.password) return;
       try {
-        await authPost(values);
+        const token  = await authPost(values);
+        authContext.updateToken(token);
       } catch (error) {
+        console.log(error)
         toast({
           title: error.statusText,
           description:
@@ -56,7 +60,7 @@ export default function Access() {
         });
       }
     },
-    [authPost, toast]
+    [authPost, toast, authContext]
   );
 
   return (

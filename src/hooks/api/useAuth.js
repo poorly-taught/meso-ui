@@ -27,19 +27,20 @@ export const usePostAuth = () => {
   const [data, setData] = useState(null);
 
   const post = async (body, options = {}) => {
+
     try {
       setIsLoading(true);
-      const response = await postAuth(body, options);
+      const { token } = await postAuth(body, options);
       // TODO: handle token response
-      setData(response);
+      setData(token);
       setIsLoading(false);
+      return token;
     } catch (error) {
       setError(error);
       setIsLoading(false);
       throw error;
     }
 
-    return data;
   };
   return {
     isLoading,
