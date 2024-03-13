@@ -20,7 +20,6 @@ export default function Home() {
 
   useEffect(() => {
     if (parentRef.current) {
-      console.log(parentRef.current.getBoundingClientRect())
       const height = parentRef.current.getBoundingClientRect().height;
       setParentHeight(height);
     }
@@ -52,11 +51,8 @@ export default function Home() {
         justify="center"
         align="flex-start"
       >
-        
         <Card h="100%" w="95%" display={"flex"}>
-          
           <Tabs isFitted colorScheme="bg.2" p={0} h="100%" m={0}>
-            
             <TabList m="0" h="10%">
               <Tab textStyle={"name"}>Programs</Tab>
               <Tab textStyle={"name"}>Cycles</Tab>
@@ -78,32 +74,184 @@ export default function Home() {
                   <Stack
                     w="100%"
                     m={0}
-                    maxH={`${parentHeight + (parentHeight * .10 )}px`}
+                    maxH={`${parentHeight + parentHeight * 0.1}px`}
                     overflowY={"scroll"}
                   >
-                    <Card mb="5px" h='80px' bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Text>test</Text>
+                    <Card mb="5px" bg="bg.2" p={2.5} color={"bg.1"}>
+                      <Flex direction={"row"} flex={1} gap={5}>
+                        <Flex direction={"column"} flex={1}>
+                          <Text textStyle={"name"}>Workout name here</Text>
+                          <Text opacity={0.7}>
+                            bench press, extension, ....
+                          </Text>
+                        </Flex>
+                        <Flex
+                          direction={"column"}
+                          justify={"center"}
+                          align={"center"}
+                          w="45%"
+                          h="100%"
+                        >
+                          <Flex
+                            direction={"row"}
+                            justify={"space-between"}
+                            align={"center"}
+                            w="100%"
+                            h="100%"
+                          >
+                            <Button
+                              h="60px"
+                              w="60px"
+                              borderRadius={"50%"}
+                              variant={"outline"}
+                              colorScheme="bg.1"
+                            >
+                              Edit
+                            </Button>
+                            <Button
+                              h="60px"
+                              w="60px"
+                              borderRadius={"50%"}
+                              variant={"outline"}
+                              colorScheme=""
+                            >
+                              Start
+                            </Button>
+                          </Flex>
+                        </Flex>
+                      </Flex>
                     </Card>
-                    <Card mb="5px" h='80px' bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Text>test</Text>
+                    <Card mb="5px" bg="bg.2" p={2.5} color={"bg.1"}>
+                      <Flex direction={"row"} flex={1} gap={5}>
+                        <Flex direction={"column"} flex={1}>
+                          <Text textStyle={"name"}>Workout name here</Text>
+                          <Text opacity={0.7}>
+                            bench press, extension, ....
+                          </Text>
+                        </Flex>
+                        <Flex
+                          direction={"column"}
+                          justify={"center"}
+                          align={"center"}
+                          w="45%"
+                          h="100%"
+                        >
+                          <Flex
+                            direction={"row"}
+                            justify={"space-between"}
+                            align={"center"}
+                            w="100%"
+                            h="100%"
+                          >
+                            <Button
+                              h="60px"
+                              w="60px"
+                              borderRadius={"50%"}
+                              variant={"outline"}
+                              colorScheme="bg.1"
+                            >
+                              Edit
+                            </Button>
+                            <Button
+                              h="60px"
+                              w="60px"
+                              borderRadius={"50%"}
+                              variant={"outline"}
+                              colorScheme=""
+                            >
+                              Start
+                            </Button>
+                          </Flex>
+                        </Flex>
+                      </Flex>
                     </Card>
-                    <Card mb="5px" h='80px' bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Text>test</Text>
+                    <Card mb="5px" bg="bg.2" p={2.5} color={"bg.1"}>
+                      <Flex direction={"row"} flex={1} gap={5}>
+                        <Flex direction={"column"} flex={1}>
+                          <Text textStyle={"name"}>Workout name here</Text>
+                          <Text opacity={0.7}>
+                            bench press, extension, ....
+                          </Text>
+                        </Flex>
+                        <Flex
+                          direction={"column"}
+                          justify={"center"}
+                          align={"center"}
+                          w="45%"
+                          h="100%"
+                        >
+                          <Flex
+                            direction={"row"}
+                            justify={"space-between"}
+                            align={"center"}
+                            w="100%"
+                            h="100%"
+                          >
+                            <Button
+                              h="60px"
+                              w="60px"
+                              borderRadius={"50%"}
+                              variant={"outline"}
+                              colorScheme="bg.1"
+                            >
+                              Edit
+                            </Button>
+                            <Button
+                              h="60px"
+                              w="60px"
+                              borderRadius={"50%"}
+                              variant={"outline"}
+                              colorScheme=""
+                            >
+                              Start
+                            </Button>
+                          </Flex>
+                        </Flex>
+                      </Flex>
                     </Card>
-                    <Card mb="5px" h='80px' bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Text>test</Text>
-                    </Card>
-                    <Card mb="5px" h='80px' bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Text>test</Text>
-                    </Card>
-                    <Card mb="5px" h='80px' bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Text>test</Text>
-                    </Card>
-                    <Card mb="5px" h='80px' bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Text>test</Text>
-                    </Card>
-                    <Card mb="5px" h='80px' bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Text>test</Text>
+                    <Card mb="5px" bg="bg.2" p={2.5} color={"bg.1"}>
+                      <Flex direction={"row"} flex={1} gap={5}>
+                        <Flex direction={"column"} flex={1}>
+                          <Text textStyle={"name"}>Workout name here</Text>
+                          <Text opacity={0.7}>
+                            bench press, extension, ....
+                          </Text>
+                        </Flex>
+                        <Flex
+                          direction={"column"}
+                          justify={"center"}
+                          align={"center"}
+                          w="45%"
+                          h="100%"
+                        >
+                          <Flex
+                            direction={"row"}
+                            justify={"space-between"}
+                            align={"center"}
+                            w="100%"
+                            h="100%"
+                          >
+                            <Button
+                              h="60px"
+                              w="60px"
+                              borderRadius={"50%"}
+                              variant={"outline"}
+                              colorScheme="bg.1"
+                            >
+                              Edit
+                            </Button>
+                            <Button
+                              h="60px"
+                              w="60px"
+                              borderRadius={"50%"}
+                              variant={"outline"}
+                              colorScheme=""
+                            >
+                              Start
+                            </Button>
+                          </Flex>
+                        </Flex>
+                      </Flex>
                     </Card>
                   </Stack>
                 </Flex>
@@ -118,9 +266,8 @@ export default function Home() {
                     Create Program
                   </Button>
                 </Flex>
-
               </TabPanel>
-              
+
               <TabPanel h="100%" display={"flex"} flexDir={"column"} flex={1}>
                 <p>two!</p>
               </TabPanel>
