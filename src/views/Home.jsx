@@ -20,6 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     if (parentRef.current) {
+      console.log(parentRef.current.getBoundingClientRect())
       const height = parentRef.current.getBoundingClientRect().height;
       setParentHeight(height);
     }
@@ -51,6 +52,7 @@ export default function Home() {
         justify="center"
         align="flex-start"
       >
+        
         <Card h="100%" w="95%" display={"flex"}>
           
           <Tabs isFitted colorScheme="bg.2" p={0} h="100%" m={0}>
@@ -76,7 +78,7 @@ export default function Home() {
                   <Stack
                     w="100%"
                     m={0}
-                    maxH={`${parentHeight}px`}
+                    maxH={`${parentHeight + (parentHeight * .10 )}px`}
                     overflowY={"scroll"}
                   >
                     <Card mb="5px" h='80px' bg="bg.2" p={2.5} color={"bg.1"}>
@@ -116,7 +118,9 @@ export default function Home() {
                     Create Program
                   </Button>
                 </Flex>
+
               </TabPanel>
+              
               <TabPanel h="100%" display={"flex"} flexDir={"column"} flex={1}>
                 <p>two!</p>
               </TabPanel>
