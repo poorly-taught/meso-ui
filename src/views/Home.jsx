@@ -52,21 +52,27 @@ export default function Home() {
         align="flex-start"
       >
         <Card h="100%" w="95%" display={"flex"}>
-          <Tabs isFitted colorScheme="bg.2" h="100%">
-            <TabList mb="0" h="10%">
+          
+          <Tabs isFitted colorScheme="bg.2" p={0} h="100%" m={0}>
+            
+            <TabList m="0" h="10%">
               <Tab textStyle={"name"}>Programs</Tab>
               <Tab textStyle={"name"}>Cycles</Tab>
             </TabList>
-            <TabPanels h="90%">
+
+            <TabPanels h="90%" m={0} p={0}>
               <TabPanel
                 h="100%"
+                m={0}
+                pt={2}
+                pl={5}
+                pr={5}
+                pb={5}
                 display={"flex"}
                 flexDir={"column"}
                 flex={1}
-                p={5}
-                gap={"5px"}
               >
-                <Flex direction={"row"} flex={1} ref={parentRef}>
+                <Flex m={0} mb={2} direction={"row"} flex={1} ref={parentRef}>
                   <Stack
                     w="100%"
                     maxH={`${parentHeight}px`}
@@ -98,7 +104,8 @@ export default function Home() {
                     </Card>
                   </Stack>
                 </Flex>
-                <Flex direction={"row"}>
+
+                <Flex m={0} direction={"row"}>
                   <Button
                     colorScheme="bg.1"
                     w="100%"
