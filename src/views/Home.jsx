@@ -75,6 +75,7 @@ export default function Home() {
                 <Flex m={0} mb={2} direction={"row"} flex={1} ref={parentRef}>
                   <Stack
                     w="100%"
+                    m={0}
                     maxH={`${parentHeight}px`}
                     overflowY={"scroll"}
                   >
