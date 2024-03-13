@@ -1,20 +1,10 @@
 import { Flex, Button, Card, Tabs, TabList, Tab, TabPanel, TabPanels, Text, Circle } from "@chakra-ui/react";
 
-import { useRef, useState, useEffect } from "react";
-import ProgramsList from "./components/ProgramsList";
+import { useState } from "react";
 import CreateProgramModal from "./components/CreateProgramModal";
 
 export default function Home() {
   const [createProgramModalIsOpen, setCreateProgramModalIsOpen] = useState(false);
-  const parentRef = useRef(null);
-  const [parentHeight, setParentHeight] = useState(0);
-
-  useEffect(() => {
-    if (parentRef.current) {
-      const height = parentRef.current.getBoundingClientRect().height;
-      setParentHeight(height);
-    }
-  }, [parentRef]);
 
   return (
     <Flex bg="bg.1" direction={"column"} h={"100vh"} w={"100vw"} gap={4} pb={4}>
@@ -39,13 +29,8 @@ export default function Home() {
 
             <TabPanels h="90%" m={0} p={0}>
               <TabPanel h="100%" m={0} p={5} pl={2} display={"flex"} flexDir={"column"} flex={1}>
-                <CreateProgramModal
-                  isOpen={createProgramModalIsOpen}
-                  onClose={() => setCreateProgramModalIsOpen(false)}
-                />
-                <Flex m={0} mb={2} direction={"row"} flex={1} ref={parentRef}>
-                  <ProgramsList height={parentHeight} />
-                </Flex>
+                {createProgramModalIsOpen && <CreateProgramModal onClose={() => setCreateProgramModalIsOpen(false)} />}
+                <Flex m={0} mb={2} direction={"row"} flex={1}></Flex>
 
                 <Flex m={0} direction={"row"}>
                   <Button
@@ -60,9 +45,7 @@ export default function Home() {
                 </Flex>
               </TabPanel>
 
-              <TabPanel h="100%" display={"flex"} flexDir={"column"} flex={1}>
-                <p>two!</p>
-              </TabPanel>
+              <TabPanel h="100%" display={"flex"} flexDir={"column"} flex={1}></TabPanel>
             </TabPanels>
           </Tabs>
         </Card>
