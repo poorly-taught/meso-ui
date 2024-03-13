@@ -1,20 +1,11 @@
-import {
-  Flex,
-  Button,
-  Card,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanel,
-  TabPanels,
-  Text,
-  Circle,
-} from "@chakra-ui/react";
+import { Flex, Button, Card, Tabs, TabList, Tab, TabPanel, TabPanels, Text, Circle } from "@chakra-ui/react";
 
 import { useRef, useState, useEffect } from "react";
 import ProgramsList from "./components/ProgramsList";
+import CreateProgramModal from "./components/CreateProgramModal";
 
 export default function Home() {
+  const [createProgramModalIsOpen, setCreateProgramModalIsOpen] = useState(false);
   const parentRef = useRef(null);
   const [parentHeight, setParentHeight] = useState(0);
 
@@ -34,23 +25,11 @@ export default function Home() {
         </Text>
       </Flex>
 
-      <Flex
-        bg="bg.1"
-        direction={"row"}
-        h={"30%"}
-        justify="center"
-        align="center"
-      >
+      <Flex bg="bg.1" direction={"row"} h={"30%"} justify="center" align="center">
         <Card bg="bg.2" h="100%" w="95%"></Card>
       </Flex>
 
-      <Flex
-        bg="bg.1"
-        direction={"row"}
-        flex={1}
-        justify="center"
-        align="flex-start"
-      >
+      <Flex bg="bg.1" direction={"row"} flex={1} justify="center" align="flex-start">
         <Card h="100%" w="95%" display={"flex"}>
           <Tabs isFitted colorScheme="bg.2" p={0} h="100%" m={0}>
             <TabList m="0" h="10%">
@@ -59,23 +38,18 @@ export default function Home() {
             </TabList>
 
             <TabPanels h="90%" m={0} p={0}>
-              <TabPanel
-                h="100%"
-                m={0}
-                pt={2}
-                pl={5}
-                pr={5}
-                pb={5}
-                display={"flex"}
-                flexDir={"column"}
-                flex={1}
-              >
+              <TabPanel h="100%" m={0} p={5} pl={2} display={"flex"} flexDir={"column"} flex={1}>
+                <CreateProgramModal
+                  isOpen={createProgramModalIsOpen}
+                  onClose={() => setCreateProgramModalIsOpen(false)}
+                />
                 <Flex m={0} mb={2} direction={"row"} flex={1} ref={parentRef}>
-                  <ProgramsList height={parentHeight}/>
+                  <ProgramsList height={parentHeight} />
                 </Flex>
 
                 <Flex m={0} direction={"row"}>
                   <Button
+                    onClick={() => setCreateProgramModalIsOpen(true)}
                     colorScheme="bg.1"
                     w="100%"
                     variant="outline"
