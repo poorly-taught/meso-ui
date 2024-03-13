@@ -1,4 +1,4 @@
-import { ChakraProvider, ScaleFade } from "@chakra-ui/react";
+import { ChakraProvider} from "@chakra-ui/react";
 import theme from "./theme.js";
 import Home from "./views/Home.jsx";
 import Access from "./views/Access.jsx";
@@ -10,13 +10,8 @@ function App() {
   return (
     <ChakraProvider resetCSS={true} theme={theme}>
       <AuthContext.Provider value={authContext}>
-        {authContext.isAuthed ? (
-          <ScaleFade initialScale={0.9} in={authContext.isAuthed}>
-            <Home />
-          </ScaleFade>
-        ) : (
-          <Access />
-        )}
+        {authContext.isAuthed && <Access />}
+        {!authContext.isAuthed && <Home />}
       </AuthContext.Provider>
     </ChakraProvider>
   );
