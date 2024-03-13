@@ -10,8 +10,8 @@ function App() {
   return (
     <ChakraProvider resetCSS={true} theme={theme}>
       <AuthContext.Provider value={authContext}>
-        {authContext.isAuthed && <Access />}
-        {!authContext.isAuthed && <Home />}
+        {!authContext.isAuthed && <Access />}
+        {authContext.isAuthed && <Home />}
       </AuthContext.Provider>
     </ChakraProvider>
   );
