@@ -1,7 +1,6 @@
 import {
   Flex,
   Button,
-  Stack,
   Card,
   Tabs,
   TabList,
@@ -13,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 
 import { useRef, useState, useEffect } from "react";
+import ProgramsList from "./components/ProgramsList";
 
 export default function Home() {
   const parentRef = useRef(null);
@@ -71,189 +71,7 @@ export default function Home() {
                 flex={1}
               >
                 <Flex m={0} mb={2} direction={"row"} flex={1} ref={parentRef}>
-                  <Stack
-                    w="100%"
-                    m={0}
-                    maxH={`${parentHeight + parentHeight * 0.1}px`}
-                    overflowY={"scroll"}
-                  >
-                    <Card mb="5px" bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Flex direction={"row"} flex={1} gap={5}>
-                        <Flex direction={"column"} flex={1}>
-                          <Text textStyle={"name"}>Workout name here</Text>
-                          <Text opacity={0.7}>
-                            bench press, extension, ....
-                          </Text>
-                        </Flex>
-                        <Flex
-                          direction={"column"}
-                          justify={"center"}
-                          align={"center"}
-                          w="45%"
-                          h="100%"
-                        >
-                          <Flex
-                            direction={"row"}
-                            justify={"space-between"}
-                            align={"center"}
-                            w="100%"
-                            h="100%"
-                          >
-                            <Button
-                              h="60px"
-                              w="60px"
-                              borderRadius={"50%"}
-                              variant={"outline"}
-                              colorScheme="bg.1"
-                            >
-                              Edit
-                            </Button>
-                            <Button
-                              h="60px"
-                              w="60px"
-                              borderRadius={"50%"}
-                              variant={"outline"}
-                              colorScheme=""
-                            >
-                              Start
-                            </Button>
-                          </Flex>
-                        </Flex>
-                      </Flex>
-                    </Card>
-                    <Card mb="5px" bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Flex direction={"row"} flex={1} gap={5}>
-                        <Flex direction={"column"} flex={1}>
-                          <Text textStyle={"name"}>Workout name here</Text>
-                          <Text opacity={0.7}>
-                            bench press, extension, ....
-                          </Text>
-                        </Flex>
-                        <Flex
-                          direction={"column"}
-                          justify={"center"}
-                          align={"center"}
-                          w="45%"
-                          h="100%"
-                        >
-                          <Flex
-                            direction={"row"}
-                            justify={"space-between"}
-                            align={"center"}
-                            w="100%"
-                            h="100%"
-                          >
-                            <Button
-                              h="60px"
-                              w="60px"
-                              borderRadius={"50%"}
-                              variant={"outline"}
-                              colorScheme="bg.1"
-                            >
-                              Edit
-                            </Button>
-                            <Button
-                              h="60px"
-                              w="60px"
-                              borderRadius={"50%"}
-                              variant={"outline"}
-                              colorScheme=""
-                            >
-                              Start
-                            </Button>
-                          </Flex>
-                        </Flex>
-                      </Flex>
-                    </Card>
-                    <Card mb="5px" bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Flex direction={"row"} flex={1} gap={5}>
-                        <Flex direction={"column"} flex={1}>
-                          <Text textStyle={"name"}>Workout name here</Text>
-                          <Text opacity={0.7}>
-                            bench press, extension, ....
-                          </Text>
-                        </Flex>
-                        <Flex
-                          direction={"column"}
-                          justify={"center"}
-                          align={"center"}
-                          w="45%"
-                          h="100%"
-                        >
-                          <Flex
-                            direction={"row"}
-                            justify={"space-between"}
-                            align={"center"}
-                            w="100%"
-                            h="100%"
-                          >
-                            <Button
-                              h="60px"
-                              w="60px"
-                              borderRadius={"50%"}
-                              variant={"outline"}
-                              colorScheme="bg.1"
-                            >
-                              Edit
-                            </Button>
-                            <Button
-                              h="60px"
-                              w="60px"
-                              borderRadius={"50%"}
-                              variant={"outline"}
-                              colorScheme=""
-                            >
-                              Start
-                            </Button>
-                          </Flex>
-                        </Flex>
-                      </Flex>
-                    </Card>
-                    <Card mb="5px" bg="bg.2" p={2.5} color={"bg.1"}>
-                      <Flex direction={"row"} flex={1} gap={5}>
-                        <Flex direction={"column"} flex={1}>
-                          <Text textStyle={"name"}>Workout name here</Text>
-                          <Text opacity={0.7}>
-                            bench press, extension, ....
-                          </Text>
-                        </Flex>
-                        <Flex
-                          direction={"column"}
-                          justify={"center"}
-                          align={"center"}
-                          w="45%"
-                          h="100%"
-                        >
-                          <Flex
-                            direction={"row"}
-                            justify={"space-between"}
-                            align={"center"}
-                            w="100%"
-                            h="100%"
-                          >
-                            <Button
-                              h="60px"
-                              w="60px"
-                              borderRadius={"50%"}
-                              variant={"outline"}
-                              colorScheme="bg.1"
-                            >
-                              Edit
-                            </Button>
-                            <Button
-                              h="60px"
-                              w="60px"
-                              borderRadius={"50%"}
-                              variant={"outline"}
-                              colorScheme=""
-                            >
-                              Start
-                            </Button>
-                          </Flex>
-                        </Flex>
-                      </Flex>
-                    </Card>
-                  </Stack>
+                  <ProgramsList height={parentHeight}/>
                 </Flex>
 
                 <Flex m={0} direction={"row"}>
