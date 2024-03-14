@@ -8,11 +8,14 @@ import {
   ModalBody,
   ModalFooter,
   useToast,
+  Text,
+  Flex,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useAuthContext } from "../../store/authContext";
 import { useExercises } from "../../hooks/api/useExercises";
 import Loader from "../../components/Loader";
+import ExercisesList from "../components/ExercisesList";
 
 export default function CreateProgramModal({ onClose }) {
   const initialRef = useRef(null);
@@ -35,26 +38,28 @@ export default function CreateProgramModal({ onClose }) {
     }
 
     doIt();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authContext.isAuthed]);
 
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent m={0} h="100%">
-       {exercisesIsLoading  && <Loader />}
-        <ModalHeader>Create Program</ModalHeader>
-        <ModalBody pb={5} overflowY={'scroll'}>
-          {exercisesData.items.map((e, i) => {
-            return <div key={i}>{e.name}</div>;
-          })}
+        {exercisesIsLoading && <Loader />}
+        <ModalHeader p={2}>
+          <Flex direction={"column"} align={"center"}>
+            <Text mb={1}>Create Program</Text>
+          </Flex>
+        </ModalHeader>
+        <ModalBody pb={5} p={2} overflowY={"scroll"}>
+          <ExercisesList exercises={exercisesData.items}/>
         </ModalBody>
 
         <ModalFooter>
-          <Button onClick={onClose} bg="bg.1" color="bg.2" mr={3}>
-            Cancel
+          <Button w="100%" onClick={onClose} bg="bg.1" color="bg.2" mr={3} size={"sm"}>
+            Back
           </Button>
-          <Button variant={"outline"} colorScheme="bg.1">
+          <Button w="100%" variant={"outline"} colorScheme="bg.1" size={"sm"}>
             Create
           </Button>
         </ModalFooter>

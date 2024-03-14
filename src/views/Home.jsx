@@ -1,7 +1,7 @@
 import { Flex, Button, Card, Tabs, TabList, Tab, TabPanel, TabPanels, Text, Circle } from "@chakra-ui/react";
 
 import { useState } from "react";
-import CreateProgramModal from "./components/CreateProgramModal";
+import CreateProgramModal from "./workflows/CreateProgramModal";
 
 export default function Home() {
   const [createProgramModalIsOpen, setCreateProgramModalIsOpen] = useState(false);
