@@ -21,25 +21,8 @@ export default function CreateProgramModal({ onClose }) {
   const initialRef = useRef(null);
   const finalRef = useRef(null);
   const isOpen = useRef(true);
-
-  const authContext = useAuthContext();
-  const { get: getExercises, isLoading: exercisesIsLoading, data: exercisesData } = useExercises(authContext.token);
-
-  const toast = useToast();
-
-  useEffect(() => {
-    if (!authContext.isAuthed) return;
-    async function doIt() {
-      try {
-        await getExercises();
-      } catch (error) {
-        toast();
-      }
-    }
-
-    doIt();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [authContext.isAuthed]);
+  
+  const { get: getExercises, isLoading: exercisesIsLoading, data: exercisesData } = useExercises();
 
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
