@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Button,
   Modal,
@@ -23,6 +23,7 @@ export default function CreateProgramModal({ onClose }) {
   const isOpen = useRef(true);
   
   const { get: getExercises, isLoading: exercisesIsLoading, data: exercisesData } = useExercises();
+  const [selectedExercises, setSelectedExercises ] = useState({})
 
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -35,7 +36,7 @@ export default function CreateProgramModal({ onClose }) {
           </Flex>
         </ModalHeader>
         <ModalBody pb={5} p={2} overflowY={"scroll"}>
-          <ExercisesList exercises={exercisesData.items}/>
+          <ExercisesList exercises={exercisesData.items} onSelect={setSelectedExercises}/>
         </ModalBody>
 
         <ModalFooter>
