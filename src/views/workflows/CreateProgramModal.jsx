@@ -7,12 +7,12 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  useToast,
+  Card,
   Text,
   Flex,
+  Input
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-import { useAuthContext } from "../../store/authContext";
 import { useExercises } from "../../hooks/api/useExercises";
 import Loader from "../../components/Loader";
 import ExercisesList from "../components/ExercisesList";
@@ -21,9 +21,9 @@ export default function CreateProgramModal({ onClose }) {
   const initialRef = useRef(null);
   const finalRef = useRef(null);
   const isOpen = useRef(true);
-  
+
   const { get: getExercises, isLoading: exercisesIsLoading, data: exercisesData } = useExercises();
-  const [selectedExercises, setSelectedExercises ] = useState({})
+  const [selectedExercises, setSelectedExercises] = useState({})
 
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -32,11 +32,20 @@ export default function CreateProgramModal({ onClose }) {
         {exercisesIsLoading && <Loader />}
         <ModalHeader p={2}>
           <Flex direction={"column"} align={"center"}>
-            <Text mb={1}>Create Program</Text>
+            <Text mb={1}>Select Exercises</Text>
           </Flex>
         </ModalHeader>
+
+        <Card p={2} ml={2} mr={2} mb={1} bg='bg.2'>
+          <Input
+            name='exerciseSearchBar'
+            focusBorderColor="bg.1"
+            variant="outline"
+          />
+          <Text mt={1} textStyle='name' fontSize={15}>Number of exercises selected {Object.keys(selectedExercises).length}</Text>
+        </Card>
         <ModalBody pb={5} p={2} overflowY={"scroll"}>
-          <ExercisesList exercises={exercisesData.items} onSelect={setSelectedExercises}/>
+          <ExercisesList exercises={exercisesData.items} onSelect={setSelectedExercises} />
         </ModalBody>
 
         <ModalFooter>
@@ -44,7 +53,7 @@ export default function CreateProgramModal({ onClose }) {
             Back
           </Button>
           <Button w="100%" variant={"outline"} colorScheme="bg.1" size={"sm"}>
-            Create
+            Next
           </Button>
         </ModalFooter>
       </ModalContent>
