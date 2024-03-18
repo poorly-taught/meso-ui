@@ -9,8 +9,9 @@ import {
   ModalFooter,
   Card,
   Text,
+  Textarea,
   Flex,
-  Input
+  Input,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { useExercises } from "../../hooks/api/useExercises";
@@ -41,6 +42,7 @@ export default function CreateProgramModal({ onClose }) {
           <Card p={2} ml={2} mr={2} mb={1} bg='bg.2'>
             <Text textStyle='name' fontSize={15}>Search and Select Exercises</Text>
             <Input
+              size='sm'
               name='exerciseSearchBar'
               focusBorderColor="bg.1"
               variant="outline"
@@ -52,11 +54,14 @@ export default function CreateProgramModal({ onClose }) {
           </ModalBody></>}
 
         {currentStep === 1 && <>
-          <Card>
-
+          <Card p={2} ml={2} mr={2} mb={1} bg='bg.2'>
+            <Text textStyle='name' fontSize={15}>Name</Text>
+            <Input size='sm' name='programName' focusBorderColor="bg.1" variant='outline'></Input>
+            <Text textStyle='name' fontSize={15}>Description</Text>
+            <Textarea size='sm' name='programDescription' focusBorderColor="bg.1" variant='outline'></Textarea>
           </Card>
           <ModalBody>
-            Test
+            
           </ModalBody>
         </>}
 
