@@ -33,21 +33,32 @@ export default function CreateProgramModal({ onClose }) {
         {exercisesIsLoading && <Loader />}
         <ModalHeader p={2}>
           <Flex direction={"column"} align={"center"}>
-            <Text mb={1}>Select Exercises</Text>
+            <Text mb={1}>New Program</Text>
           </Flex>
         </ModalHeader>
 
-        {currentStep === 0 && <><Card p={2} ml={2} mr={2} mb={1} bg='bg.2'>
-          <Input
-            name='exerciseSearchBar'
-            focusBorderColor="bg.1"
-            variant="outline"
-          />
-          <Text mt={1} textStyle='name' fontSize={15}>Number of exercises selected {Object.keys(selectedExercises).length}</Text>
-        </Card>
+        {currentStep === 0 && <>
+          <Card p={2} ml={2} mr={2} mb={1} bg='bg.2'>
+            <Text textStyle='name' fontSize={15}>Search and Select Exercises</Text>
+            <Input
+              name='exerciseSearchBar'
+              focusBorderColor="bg.1"
+              variant="outline"
+            />
+            <Text mt={1} textStyle='name' fontSize={15}>Number of exercises selected {Object.keys(selectedExercises).length}</Text>
+          </Card>
           <ModalBody pb={5} p={2} overflowY={"scroll"}>
             <ExercisesList exercises={exercisesData.items} onSelect={setSelectedExercises} />
           </ModalBody></>}
+
+        {currentStep === 1 && <>
+          <Card>
+
+          </Card>
+          <ModalBody>
+            Test
+          </ModalBody>
+        </>}
 
         <ModalFooter>
           <Button w="100%" onClick={() => {
