@@ -24,6 +24,7 @@ export default function CreateProgramModal({ onClose }) {
 
   const { get: getExercises, isLoading: exercisesIsLoading, data: exercisesData } = useExercises();
   const [selectedExercises, setSelectedExercises] = useState({})
+  const [currentStep, setCurrentStep] = useState(0)
 
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -36,7 +37,7 @@ export default function CreateProgramModal({ onClose }) {
           </Flex>
         </ModalHeader>
 
-        <Card p={2} ml={2} mr={2} mb={1} bg='bg.2'>
+        {currentStep === 0 && <><Card p={2} ml={2} mr={2} mb={1} bg='bg.2'>
           <Input
             name='exerciseSearchBar'
             focusBorderColor="bg.1"
@@ -44,15 +45,27 @@ export default function CreateProgramModal({ onClose }) {
           />
           <Text mt={1} textStyle='name' fontSize={15}>Number of exercises selected {Object.keys(selectedExercises).length}</Text>
         </Card>
-        <ModalBody pb={5} p={2} overflowY={"scroll"}>
-          <ExercisesList exercises={exercisesData.items} onSelect={setSelectedExercises} />
-        </ModalBody>
+          <ModalBody pb={5} p={2} overflowY={"scroll"}>
+            <ExercisesList exercises={exercisesData.items} onSelect={setSelectedExercises} />
+          </ModalBody></>}
 
         <ModalFooter>
-          <Button w="100%" onClick={onClose} bg="bg.1" color="bg.2" mr={3} size={"sm"}>
+          <Button w="100%" onClick={() => {
+            if (currentStep === 0) {
+              onClose();
+              return;
+            }
+            setCurrentStep((prev) => {
+              prev--
+              return prev;
+            })
+          }} bg="bg.1" color="bg.2" mr={3} size={"sm"}>
             Back
           </Button>
-          <Button w="100%" variant={"outline"} colorScheme="bg.1" size={"sm"}>
+          <Button onClick={() => setCurrentStep((prev) => {
+            prev++;
+            return prev
+          })} w="100%" variant={"outline"} colorScheme="bg.1" size={"sm"}>
             Next
           </Button>
         </ModalFooter>
