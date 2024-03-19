@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Button,
   Modal,
@@ -17,6 +17,7 @@ import PropTypes from "prop-types";
 import { useExercises } from "../../hooks/api/useExercises";
 import Loader from "../../components/Loader";
 import ExercisesList from "../components/ExercisesList";
+import ProgramEditor from "../components/ProgramEditor";
 
 export default function CreateProgramModal({ onClose }) {
   const initialRef = useRef(null);
@@ -53,17 +54,11 @@ export default function CreateProgramModal({ onClose }) {
             <ExercisesList exercises={exercisesData.items} selectedExercises={selectedExercises} onSelect={setSelectedExercises} />
           </ModalBody></>}
 
-        {currentStep === 1 && <>
-          <Card p={2} ml={2} mr={2} mb={1} bg='bg.2'>
-            <Text textStyle='name' fontSize={15}>Name</Text>
-            <Input size='sm' name='programName' focusBorderColor="bg.1" variant='outline'></Input>
-            <Text textStyle='name' fontSize={15}>Description</Text>
-            <Textarea size='sm' name='programDescription' focusBorderColor="bg.1" variant='outline'></Textarea>
-          </Card>
-          <ModalBody>
-            
+        {currentStep === 1 &&
+          <ModalBody p={2}>
+            <ProgramEditor />
           </ModalBody>
-        </>}
+        }
 
         <ModalFooter>
           <Button w="100%" onClick={() => {
