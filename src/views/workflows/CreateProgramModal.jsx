@@ -50,7 +50,7 @@ export default function CreateProgramModal({ onClose }) {
             <Text mt={1} textStyle='name' fontSize={15}>Number of exercises selected {Object.keys(selectedExercises).length}</Text>
           </Card>
           <ModalBody pb={5} p={2} overflowY={"scroll"}>
-            <ExercisesList exercises={exercisesData.items} onSelect={setSelectedExercises} />
+            <ExercisesList exercises={exercisesData.items} selectedExercises={selectedExercises} onSelect={setSelectedExercises} />
           </ModalBody></>}
 
         {currentStep === 1 && <>
