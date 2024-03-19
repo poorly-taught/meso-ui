@@ -55,8 +55,8 @@ export default function CreateProgramModal({ onClose }) {
           </ModalBody></>}
 
         {currentStep === 1 &&
-          <ModalBody p={2}>
-            <ProgramEditor />
+          <ModalBody pb={5} p={2} overflowY={'scroll'}>
+            <ProgramEditor exercises={selectedExercises} />
           </ModalBody>
         }
 
