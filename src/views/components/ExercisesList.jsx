@@ -4,16 +4,17 @@ import { AddIcon, CheckIcon } from '@chakra-ui/icons'
 import { Stack, Card, Flex, Button, Text } from "@chakra-ui/react";
 import PropTypes from 'prop-types'
 
-const ExerciseCard = (e, i, selected, onSelect) => {
-  return <Card key={e.name + i} direction={"row"} bg="bg.2" p={2} mb={1}>
+const ExerciseCard = ({ exercise, selected, onSelect }) => {
+  return <Card direction={"row"} bg="bg.2" p={2} mb={1}>
     <Flex direction="column" flex={1} justify={"center"}>
       <Text textStyle={"name"} fontSize={15}>
-        {e.name}
+        {exercise.name}
       </Text>
     </Flex>
     <Flex direction="column" justify={"center"}>
       <Button p={0} bg={"none"} borderRadius={"50%"} onClick={() => {
         onSelect((prev) => {
+          const e = exercise;
           if (prev[e._id]) {
             const tmp = { ...prev }
             delete tmp[e._id];
@@ -40,7 +41,7 @@ export default function ExercisesList({ exercises, selectedExercises, onSelect }
 
   return (
     <Stack>
-      {exercises.map((e, i) => ExerciseCard(e, i, selectedExercises[e._id], onSelect))}
+      {exercises.map((e, i) => <ExerciseCard key={e.name + i} exercise={e} selected={selectedExercises[e._id]} onSelect={onSelect} />)}
     </Stack>
   );
 }
