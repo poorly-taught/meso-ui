@@ -33,10 +33,10 @@ export default function ProgramEditor({ exercises }) {
             </Flex>
             <Flex dir="column">
               <NumberInput size="sm" defaultValue={15} min={10} max={20}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
+                <NumberInputField size="sm" />
+                <NumberInputStepper size="sm">
+                  <NumberIncrementStepper size="sm" />
+                  <NumberDecrementStepper size="sm" />
                 </NumberInputStepper>
               </NumberInput>
             </Flex>
