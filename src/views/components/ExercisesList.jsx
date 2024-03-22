@@ -1,10 +1,26 @@
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { AddIcon, CheckIcon } from '@chakra-ui/icons'
 import { Stack, Card, Flex, Button, Text } from "@chakra-ui/react";
 import PropTypes from 'prop-types'
 
 const ExerciseCard = ({ exercise, selected, onSelect }) => {
+  const onNewSelect = useCallback(() => {
+    onSelect((prev) => {
+      const e = exercise;
+      if (prev[e._id]) {
+        const tmp = { ...prev }
+        delete tmp[e._id];
+        return tmp
+      }
+
+      return {
+        ...prev,
+        [e._id]: e
+      }
+    })
+  }, [onSelect])
+
   return <Card direction={"row"} bg="bg.2" p={2} mb={1}>
     <Flex direction="column" flex={1} justify={"center"}>
       <Text textStyle={"name"} fontSize={15}>
@@ -12,21 +28,7 @@ const ExerciseCard = ({ exercise, selected, onSelect }) => {
       </Text>
     </Flex>
     <Flex direction="column" justify={"center"}>
-      <Button p={0} bg={"none"} borderRadius={"50%"} onClick={() => {
-        onSelect((prev) => {
-          const e = exercise;
-          if (prev[e._id]) {
-            const tmp = { ...prev }
-            delete tmp[e._id];
-            return tmp
-          }
-
-          return {
-            ...prev,
-            [e._id]: e
-          }
-        })
-      }}>
+      <Button p={0} bg={"none"} borderRadius={"50%"} onClick={onNewSelect}>
         <Text
           m={0}
         >
