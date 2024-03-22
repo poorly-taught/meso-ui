@@ -23,10 +23,12 @@ export default function CreateProgramModal({ onClose }) {
   const initialRef = useRef(null);
   const finalRef = useRef(null);
   const isOpen = useRef(true);
-
+  
   const { get: getExercises, isLoading: exercisesIsLoading, data: exercisesData } = useExercises();
-  const [selectedExercises, setSelectedExercises] = useState({})
   const [currentStep, setCurrentStep] = useState(0)
+
+  const [selectedExercises, setSelectedExercises] = useState({})
+  const [setsAndReps, setSetsAndReps] = useState({})
 
   return (
     <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
@@ -40,23 +42,19 @@ export default function CreateProgramModal({ onClose }) {
         </ModalHeader>
 
         {currentStep === 0 && <>
-          <Card p={2} ml={2} mr={2} mb={1} bg='bg.2'>
-            <Text textStyle='name' fontSize={15}>Search and Select Exercises</Text>
-            <Input
-              size='sm'
-              name='exerciseSearchBar'
-              focusBorderColor="bg.1"
-              variant="outline"
-            />
-            <Text mt={1} textStyle='name' fontSize={15}>Number of exercises selected {Object.keys(selectedExercises).length}</Text>
-          </Card>
           <ModalBody pb={5} p={2} overflowY={"scroll"}>
             <ExercisesList exercises={exercisesData.items} selectedExercises={selectedExercises} onSelect={setSelectedExercises} />
           </ModalBody></>}
 
         {currentStep === 1 &&
           <ModalBody pb={5} p={2} overflowY={'scroll'}>
-            <ProgramEditor exercises={selectedExercises} />
+            <ProgramEditor exercises={selectedExercises} onChange={setSetsAndReps}/>
+          </ModalBody>
+        }
+
+        {currentStep === 2 && 
+          <ModalBody>
+            {/* <ProgramReview setSetsAndReps={setsAndReps}/> */}
           </ModalBody>
         }
 
